@@ -14,14 +14,18 @@ public class simpleStopwatch implements ActionListener{
         // Terminate program when user closes application
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        jlab = new JLabel("Press button to start");
-        jfrm.getContentPane().add(jlab);
         //create label prompt
+        jlab = new JLabel("Press button to start");
+        //add prompt to frame
+        jfrm.getContentPane().add(jlab);
+
+        //create start and stop buttons
         JButton start = new JButton("Start");
         JButton stop = new JButton("Stop");
         //add action listener
         start.addActionListener(this);
         stop.addActionListener(this);
+        //add buttons to frame
         jfrm.getContentPane().add(start);
         jfrm.getContentPane().add(stop);
 
@@ -32,8 +36,10 @@ public class simpleStopwatch implements ActionListener{
     //Handle action event (for when the button is pressed)
     public void actionPerformed(ActionEvent ae) {
         if(ae.getActionCommand().equals("Start"))
+            //text when start is pressed
             jlab.setText("Stopwatch is running");
         else
+            //text when stop is pressed
             jlab.setText("Stopwatch was stopped");
     }
     public static void main(String args[]) {
