@@ -17,7 +17,6 @@ public class simpleStopwatch implements ActionListener{
         // Terminate program when user closes application
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         //create start and stop buttons
         JButton start = new JButton("Start");
         JButton stop = new JButton("Stop");
