@@ -1,9 +1,12 @@
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class simpleStopwatch implements ActionListener{
     JLabel jlab;
+    double begin;
+    double end;
 
     simpleStopwatch(){
         //create a new JFrame container.
@@ -14,10 +17,6 @@ public class simpleStopwatch implements ActionListener{
         // Terminate program when user closes application
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //create label prompt
-        jlab = new JLabel("Press button to start");
-        //add prompt to frame
-        jfrm.getContentPane().add(jlab);
 
         //create start and stop buttons
         JButton start = new JButton("Start");
@@ -29,18 +28,27 @@ public class simpleStopwatch implements ActionListener{
         jfrm.getContentPane().add(start);
         jfrm.getContentPane().add(stop);
 
+        //create label prompt
+        jlab = new JLabel("Press button to start");
+        //add prompt to frame
+        jfrm.getContentPane().add(jlab);
+
         //display frame
         jfrm.setVisible(true);
     }
 
     //Handle action event (for when the button is pressed)
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getActionCommand().equals("Start"))
+        if(ae.getActionCommand().equals("Start")) {
             //text when start is pressed
-            jlab.setText("Stopwatch is running");
-        else
+            begin = System.currentTimeMillis();
+            jlab.setText("Timer Started");
+        }
+        else {
             //text when stop is pressed
-            jlab.setText("Stopwatch was stopped");
+            end = System.currentTimeMillis();
+            jlab.setText("Time: " + (end - begin));
+        }
     }
     public static void main(String args[]) {
         SwingUtilities.invokeLater(new Runnable() {
