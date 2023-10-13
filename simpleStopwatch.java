@@ -4,33 +4,44 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class simpleStopwatch implements ActionListener{
-    JLabel jlab;
+    //declaring variables
+    private JPanel panel;
+    private JLabel jlab;
     double begin;
     double end;
+    private JButton start;
+    private JButton stop;
 
     simpleStopwatch(){
         //create a new JFrame container.
         JFrame jfrm = new JFrame("Simple Stopwatch");
-        jfrm.getContentPane().setLayout(new FlowLayout());
+        //jfrm.getContentPane().setLayout(new FlowLayout());
         //Give the frame an initial size
-        jfrm.setSize(400,200);
+        jfrm.setSize(225,150);
         // Terminate program when user closes application
         jfrm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //declare the panel with a flow layout
+        panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+
         //create start and stop buttons
-        JButton start = new JButton("Start");
-        JButton stop = new JButton("Stop");
+        start = new JButton("Start");
+        stop = new JButton("Stop");
         //add action listener
         start.addActionListener(this);
         stop.addActionListener(this);
-        //add buttons to frame
-        jfrm.getContentPane().add(start);
-        jfrm.getContentPane().add(stop);
+        //add buttons to panel
+        panel.add(start);
+        panel.add(stop);
 
         //create label prompt
         jlab = new JLabel("Press button to start");
-        //add prompt to frame
-        jfrm.getContentPane().add(jlab);
+        //add prompt to panel
+        panel.add(jlab);
+
+        //add panel to frame
+        jfrm.add(panel);
 
         //display frame
         jfrm.setVisible(true);
@@ -41,7 +52,7 @@ public class simpleStopwatch implements ActionListener{
         if(ae.getActionCommand().equals("Start")) {
             //text when start is pressed
             begin = System.currentTimeMillis();
-            jlab.setText("Timer Started");
+            jlab.setText("Stopwatch is running");
         }
         else {
             //text when stop is pressed
